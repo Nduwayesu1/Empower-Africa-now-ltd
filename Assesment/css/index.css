@@ -1,0 +1,110 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f2f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: #0078ff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #005fcc;
+}
+
+.hidden {
+    display: none;
+}
+
+#error {
+    color: red;
+    text-align: center;
+    margin: 10px 0;
+}
+
+#loading {
+    text-align: center;
+    color: #0078ff;
+    margin: 10px 0;
+}
+
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.post-card {
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.post-card h3 {
+    margin: 0 0 10px 0;
+}
+
+.card-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.card-buttons button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.view-btn {
+    background: #0078ff;
+    color: white;
+}
+
+.edit-btn {
+    background: #ffa500;
+    color: white;
+}
+
+.delete-btn {
+    background: #ff4d4d;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.9;
+}

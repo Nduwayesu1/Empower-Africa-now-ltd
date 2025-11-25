@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post Details</title>
+  <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+<div class="container">
+    <h1 id="postTitle"></h1>
+    <p id="postContent"></p>
+
+    <div class="buttons">
+        <button id="editBtn" class="edit-btn">Edit</button>
+        <button id="deleteBtn" class="delete-btn">Delete</button>
+        <a href="../index.html"><button class="submit-btn">Back</button></a>
+    </div>
+
+    <div id="editFormContainer" class="hidden">
+        <h2>Edit Post</h2>
+        <input type="text" id="editTitle" placeholder="Post Title">
+        <textarea id="editContent" placeholder="Post Content"></textarea>
+        <button id="saveBtn" class="submit-btn">Save Changes</button>
+        <button id="cancelBtn" class="delete-btn">Cancel</button>
+    </div>
+</div>
+
+<script>
+const postTitle = document.getElementById("postTitle");
+const postContent = document.getElementById("postContent");
+const editBtn = document.getElementById("editBtn");
+const deleteBtn = document.getElementById("deleteBtn");
+const editFormContainer = document.getElementById("editFormContainer");
+const editTitle = document.getElementById("editTitle");
+const editContent = document.getElementById("editContent");
+const saveBtn = document.getElementById("saveBtn");
+const cancelBtn = document.getElementById("cancelBtn");
+
+// Load posts from localStorage
+let posts = JSON.parse(localStorage.getItem("posts") || "[]");
+let postIndex = parseInt(localStorage.getItem("viewPostIndex"));
+
+// Display post details
+function displayPost() {
+    if (!posts[postIndex]) {
+        postTitle.textContent = "Post not found";
+        postContent.textContent = "";
+        editBtn.style.display = "none";
+        deleteBtn.style.display = "none";
+        return;
+    }
+    postTitle.textContent = posts[postIndex].title;
+    postContent.textContent = posts[postIndex].content;
+    editBtn.style.display = "inline-block";
+    deleteBtn.style.display = "inline-block";
+}
+
+displayPost();
+
+// Edit post
+editBtn.addEventListener("click", () => {
+    editFormContainer.classList.remove("hidden");
+    editTitle.value = posts[postIndex].title;
+    editContent.value = posts[postIndex].content;
+});
+
+// Save changes
+saveBtn.addEventListener("click", () => {
+    const title = editTitle.value.trim();
+    const content = editContent.value.trim();
+
+    if (!title || !content) {
+        alert("Title and Content are required!");
+        return;
+    }
+
+    posts[postIndex] = { title, content };
+    localStorage.setItem("posts", JSON.stringify(posts));
+    editFormContainer.classList.add("hidden");
+    displayPost();
+});
+
+// Cancel edit
+cancelBtn.addEventListener("click", () => {
+    editFormContainer.classList.add("hidden");
+});
+
+// Delete post
+deleteBtn.addEventListener("click", () => {
+    if (!posts[postIndex]) return;
+    if (confirm("Are you sure you want to delete this post?")) {
+        posts.splice(postIndex, 1);
+        localStorage.setItem("posts", JSON.stringify(posts));
+        localStorage.removeItem("viewPostIndex");
+        window.location.href = "index.html";
+    }
+});
+</script>
+</body>
+</html>

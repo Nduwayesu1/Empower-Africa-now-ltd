@@ -1,6 +1,4 @@
-Sure! Here’s a **concise, technology-agnostic summary** of your Project Manager app, without mentioning HTML/CSS/JS explicitly:
 
----
 
 # **Project Manager App - Summary**
 
